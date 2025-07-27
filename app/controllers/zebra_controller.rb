@@ -47,6 +47,19 @@ class ZebraController < ApplicationController
     render({ :template => "game_templates/dice_5_4"})
   end
 
+  def dice_results_action
+    num_dice  = params.fetch("num_dice").to_i
+    num_sides = params.fetch("num_sides").to_i
+
+    @rolls = []
+    num_dice.times do
+      @rolls.push(rand(1..num_sides))
+    end
+
+    render({ :template => "game_templates/dice_results" })
+  end
+
+
 end
 
   #get("/", { :controller => "zebra", :action => "homepage_action" })
